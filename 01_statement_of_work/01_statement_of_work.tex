@@ -81,13 +81,13 @@ The scope of the project works include the following items:
 \begin{minipage}{0.45\textwidth}
 \centering
 \frame{\includegraphics[height=5cm]{robot_image}}
-\caption{Pololu Dagu Rover 5, two motor, tracked chassis with encoders}
+\caption{Pololu Dagu Rover 5, two motor, tracked chassis with encoders. Sourced: https://www.sparkfun.com/products/10336}
 \end{minipage}
 \hspace{1cm}
 \begin{minipage}{0.45\textwidth}
 \centering
 \frame{\includegraphics[height=5cm]{my_rio_image}}
-\caption{NI myRio powered by the Xilinx ZYNQ 7Z2010 microprocessor}
+\caption{NI myRio powered by the Xilinx ZYNQ 7Z2010 microprocessor. Sourced: https://www.ni.com}
 \end{minipage}
 \end{figure}
 
@@ -151,7 +151,7 @@ One of the simplest and lowest cost designs, would be the implementation of a fi
 \end{minipage}
 \end{figure}
 
-Whilst simple to implement, this design poses high risk of failure, and would need careful consideration of scenarios which may cause this failure. One elementary example of how this system might fail can be seen in Figure 4. Significant modifications to the scheme, and subsequent simulation or experimentation would need to be undertaken to ensure the required outcomes are met if this design is selected. A full description of the design option advantages, disadvantages, and hardware requirements can be found in Table XXXX.
+Whilst simple to implement, this design poses high risk of failure, and would need careful consideration of scenarios which may cause this failure. One elementary example of how this system might fail can be seen in Figure 4. Significant modifications to the scheme, and subsequent simulation or experimentation would need to be undertaken to ensure the required outcomes are met if this design is selected. A full description of the design option advantages, disadvantages, and hardware requirements can be found in Table 2.
 
 \vspace{1cm}
 
@@ -182,7 +182,7 @@ Whilst simple to implement, this design poses high risk of failure, and would ne
 \newpage
 
 \subsection{Moderate Design Complexity}
-The principal advancement of this design is underpinned by more sophisticated software used to traverse an environment topology. A similar IR sensor layout to the robot in Section 4.1 would be used, however, Kapoor et alias (2017) recommend an ultrasonic sensor on the front of the robot to provide longer mapping capability for more effective paths. Since environment dimensions are known, the map could be discretised into robot sized segments, as shown in Figure 5. The software would capitalise on this structure by creating a 3-dimensional \verb|char| array to map progress. The array would be 4 times the size of the discretised map since the starting location is randomised, and depth would be 6 elements, whose contents are described in Table 1. Mapping the environment in this way would allow more intelligent options for navigating the terrain, allowing the robot to document visited areas, and regions of the environment with obstacles.
+The principal advancement of this design is underpinned by more sophisticated software used to traverse an environment topology. A similar IR sensor layout to the robot in Section 4.1 would be used, however, Kapoor et alias (2017) recommend an ultrasonic sensor on the front of the robot to provide longer mapping capability for more effective paths. Since environment dimensions are known, the map could be discretised into robot sized segments, as shown in Figure 6. The software would capitalise on this structure by creating a 3-dimensional \verb|char| array to map progress. The array would be 4 times the size of the discretised map since the starting location is randomised, and depth would be 6 elements, whose contents are described in Table 3. Mapping the environment in this way would allow more intelligent options for navigating the terrain, allowing the robot to document visited areas, and regions of the environment with obstacles.
 
 \begin{figure}[h]
 \centering
@@ -257,7 +257,7 @@ The principal advancement of this design is underpinned by more sophisticated so
 \end{minipage}
 \end{figure}
 
-This scheme would provide higher levels of assurance that the robot will traverse the full map and arrive at the exit panel, however, this implementation runs the risk of exceeding the 3 minute time limit - it is easy to imagine a scenario in which the exit is located in the final panel visited.
+This scheme would provide higher levels of assurance that the robot will traverse the full map and arrive at the exit panel, however, this implementation runs the risk of exceeding the 3 minute time limit - it is easy to imagine a scenario in which the exit is located in the final panel visited. See Table 4 for pros, cons, and hardware requirements.
 
 \begin{table}[h]
 \centering
@@ -277,7 +277,7 @@ This scheme would provide higher levels of assurance that the robot will travers
 \end{table}
 
 \subsection{High Design Complexity}
-The previous two design options are best suited to basic environments, like the one shown in Figure 7. This environment has obstacles with surfaces that are orthogonal or parallel to other obstacle surfaces. The design options shown in Sections 4.1 and 4.2 may start to encounter difficulties when presented environments that are more complex, like that shown in Figure 7.
+The previous two design options are best suited to basic environments, like the one shown in Figure 7. This environment has obstacles with surfaces that are orthogonal or parallel to other obstacle surfaces. The design options shown in Sections 4.1 and 4.2 may start to encounter difficulties when presented environments that are more complex, like that shown in Figure 8.
 \begin{figure}[h]
 \centering
 \begin{minipage}{0.45\textwidth}
@@ -347,7 +347,7 @@ This is because obstacles may fall across multiple grid regions, or simply becau
 \caption{Using a simple RGB (or HSV) segmentation filter, the navigable terrain is highlighted to use for obstacle avoidance}
 \end{figure}
 
-There are a number of different options when looking at more sophisticated sensors. Some of these include optical (RGB) cameras, optical with IR depth (RGBD) cameras, or Lidar. The later two sensors provide advanced options like developing point clouds of an environment, but are considerably more costly. An example showing a simple RGB camera mounted to the front of the robot can be seen in Figure 8. The image from the robot camera is transformed to aid conceptualisation of the environment map - this step is purely aesthetic. Figure 9 shows the segmentation of navigable terrain and obstacles using a HSV filter. Advanced sensors provide rich environmental information sets, which allow for more sophisticated mapping and navigation algorithms. According to Cadena, et alias (2016), simultaneous localisation and mapping (SLAM) is widely employed in autonomous robotics. SLAM allows simultaneous estimation of robot state ($x$-coord, $y$-coord, $z$-coord, roll, pitch, yaw), and mapping of the environment. Much less sophisticated techniques, such as using odometry for mapping, tend to accumulate error over time. SLAM provides a 'reset' of these errors by revisiting previously mapped areas. This approach allows robust accurate mapping, and efficient location of the exit zone, meaning the robot can reach it's objective faster.
+There are a number of different options when looking at more sophisticated sensors. Some of these include optical (RGB) cameras, optical with IR depth (RGBD) cameras, or Lidar. The later two sensors provide advanced options like developing point clouds of an environment, but are considerably more costly. An example showing a simple RGB camera mounted to the front of the robot can be seen in Figure 9. The image from the robot camera is transformed to aid conceptualisation of the environment map - this step is purely aesthetic. Figure 10 shows the segmentation of navigable terrain and obstacles using a HSV filter. Advanced sensors provide rich environmental information sets, which allow for more sophisticated mapping and navigation algorithms. According to Cadena, et alias (2016), simultaneous localisation and mapping (SLAM) is widely employed in autonomous robotics. SLAM allows simultaneous estimation of robot state ($x$-coord, $y$-coord, $z$-coord, roll, pitch, yaw), and mapping of the environment. Much less sophisticated techniques, such as using odometry for mapping, tend to accumulate error over time. SLAM provides a 'reset' of these errors by revisiting previously mapped areas. This approach allows robust accurate mapping, and efficient location of the exit zone, meaning the robot can reach it's objective faster.
 
 \begin{table}[h]
 \centering
@@ -368,7 +368,7 @@ There are a number of different options when looking at more sophisticated senso
 %------------------------------------------------------
 \section{Project Management}
 \subsection{Project Personnel}
-This project requires both technical and non-technical skills. The success of the project depends on the efficiency and productivity of the team. The delegation of tasks has been distributed amongst the group based on individual strengths and weaknesses. This will assist the team to work efficiently on each task. The expectation of the team is that each member of the group contributes to the project in accordance with the breakdown Table below.
+This project requires both technical and non-technical skills. The success of the project depends on the efficiency and productivity of the team. The delegation of tasks has been distributed amongst the group based on individual strengths and weaknesses. This will assist the team to work efficiently on each task. The expectation of the team is that each member of the group contributes to the project in accordance with the breakdown shown in Table 6.
 
 \begin{table}[h]
 \centering
@@ -389,7 +389,7 @@ Sakon Nadthayai & Vehicle assembly, hardware integration, testing, programming a
 \end{table}
 
 \subsection{Project Plan}
-The complexity of this design project requires a structural logical approach. Hence its imperative to detail a project plan to ensure that the project is completed in a timely manner and to a high standard. A sequence of tasks was created to identify all important due dates. The Figure below shows the main milestones and the duration of each phase. Each phase consists of necessary tasks to complete the design, construction and implementation of the autonomous robotic vehicle. For more information about each phase and its tasks, please refer to Gantt Chart on page 8.\\
+The complexity of this design project requires a structural logical approach. Hence its imperative to detail a project plan to ensure that the project is completed in a timely manner and to a high standard. A sequence of tasks was created to identify all important due dates. Figure 11 shows the main milestones and the duration of each phase. Each phase consists of necessary tasks to complete the design, construction and implementation of the autonomous robotic vehicle. For more information about each phase and its tasks, please refer to Gantt Chart on page 12.\\
 
 \begin{figure}[h]
 \centering
@@ -479,39 +479,55 @@ The stakeholders of this project are as follows:
 Each of the three design options require the use of the Rover 5 chassis, the 4 channel motor controller, and the NI myRio Xilinx processor. The main differentiation in terms of cost comes down to the sensors that will be employed and the estimated man hours involved with the implementation. Table 7 provides the estimated budget for each option.
 \begin{table}[h]
 \centering
-\caption{text}
+\caption{Budgeted costs for the sunk costs, and each design option}
 \begin{tabular}{p{6cm}rp{6cm}r}
 \toprule
 \textbf{Sunk Costs} & & \textbf{Low Complexity} & \\
 \midrule
-Rover 5 chassis & \$128.00 & 3 $\times$ SHARP GP2D120 & \$ \\
-myRio 1900 & \$814.00 & 1 $\times$ SHARP GP2Y0A21YK0F & \$ \\
-4 channel motor controller & \$21.95 &  & \$ \\
+Rover 5 chassis & \$68.81 & 3 $\times$ SHARP GP2D120 & \$47.85 \\
+myRio 1900 & \$814.00 & 1 $\times$ SHARP GP2Y0A21YK0F & \$15.95 \\
+4 channel motor controller & \$21.95 &  & \\
+Prototyping equipment (breadboard, wiring, etc) & \$50.00 & & \\
 \midrule
-Total & & Total & \\
+Total & \$ 954.76 & Total & \$63.80 \\
 \midrule
+\ & & & \\
 \midrule
 \textbf{Moderate Complexity} & & \textbf{High Complexity} & \\
 \midrule
+3 $\times$ SHARP GP2D120 & \$47.85 & 2 $\times$ SHARP GP2D120 & \$32.90 \\
+1 $\times$ SHARP GP2Y0A21YK0F & \$15.95 & Intel RealSense R200 Camera & \$127.50 \\
+1 $\times$ PING))) Ultrasonic distance sensor & \$29.99 & (optional) Scanse Lidar Sweep Scanner & \$349.00 \\
 \midrule
-Total & & Total & \\
+Total & \$93.79 & Total & \$509.40 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
+The range of costs for the proposed options start at \$1018.56 for the cheapest option, up to \$1464.16 for the state of the art solution. The costs for these products were sourced from the the following online retailers:
+\begin{itemize}
+\item \textbf{Mouser:} \url{https://au.mouser.com}
+\item \textbf{National Instruments} \url{https://www.ni.com}
+\item {\textbf{Pakronics:}} \url{https://www.pakronics.com.au}
+\item \textbf{Parallax:} \url{https://www.parallax.com}
+\item \textbf{RS Components Australia:} \url{https://au.rs-online.com}
+\item \textbf{Scance:} \url{http://scanse.io/}
+\end{itemize}
+
 %------------------------------------------------------
 \section{Project Constraints}
-The project has 3 limitations that can be considered as constraints including;
+This project has several constraints which restrict project options. The following are the main project constraints:
 \begin{itemize}
-\item \textbf{Cost}: for achieving of design the robot performing effectively as a client requirement, it requires to use a high quality of camera for example, a RGBD camera and a number of sensors to increase a performance of the robot to move and check obstacles faster and more accurate. Therefore,it can affect an increasing of budgeting.
-\item \textbf{Time}: because of a short time period of the completed project which is only 11 weeks the project has to completely finish building a perfect robot that can work perfectly as the client requirement, during a process of designing to implementing the autonomous robotic vehicle , it requires time to test, evaluate, study,search and improve to make the robot working perfectly. Thus, as the limitation of time may affect the quality of the robot performance. Also a delivery time of ordered any material parts might affect the time frame.
-\item \textbf{Scope}: as the limitation of the project scope and the client requirement affect cost,time frame and quality in the project, if one factor is changed this will affect to other factor. However, this project is focusing on the quality of the robotic performance  therefore the cost and the time are required more.
-Quality; because of the limitation of the budget and the time frame in this project it affects to the quality of the robotic performance. As an extend of the budgeting and time frame will make high quality of the autonomous robotic vehicle performance.
+\item \textbf{Cost:} as identified previously this project has three possible design options. Each design option can be categorized by its complexity level. To achieve high performance, hence the desirable outcome for the client, the design would then require technically advanced components for example, a RGBD camera and  sophisticated sensors and algorithm. The tradeoff here is performance versus budget, increasing the budget would provide the best performance.
+\item \textbf{Time:} one of the biggest constraints of this project is time. This project must be completed within 11 weeks which limits the scope of work. To achieve high performance using advanced features would require a deeper research, more time to implement the design and its algorithm. Time constraint can sabotage the quality of the robotic vehicle and the design scope, hence careful planning and adherence to the project plan must be followed to ensure project completion on time and in accordance with the scope. 
+\item \textbf{Scope:} if the scope creep happens during the project it will result in increased cost and time, and reduced quality. Given the nature of this project, the scope creep may potentially appear during the testing period for the second milestone. 
+\item \textbf{Quality:} if not managed properly the identified time constraint may affect the quality of the vehicle. The vehicle may not perform in accordance with the specification or perform poorly which is always undesirable for the client.
+\item \textbf{Resources:} this project limits the choice of software and processor that can be used for robotic vehicle design implementation. In this project the designing team is only allowed to use NI myRio 1900 or an Arduino devices and their compatible softwares such as LabVIEW, which limits the design options and requires learning time.
 \end{itemize}
 
 %------------------------------------------------------
 \section{Preferred Design \& Points for Discussion}
-The preferred design option is one which meets the project requirements an operates within the project constraints, whilst delivering an optimal outcome for performance and cost. In reality, the best solution is most likely to include elements from the low, moderate, and high complexity design options - there are useful design elements in each. The most robust solution would be the 
+A design option which meets the project requirements and operates within the project constraints, whilst delivering an optimal outcome in terms of performance and cost is the most desirable design solution. In reality, the best solution is most likely to include elements from the low, moderate, and high complexity design options - there are useful design elements in each. The most robust solution would be the highest complexity design, however, this is likely to provide a solution which is beyond the project scope resulting in unnecessary expenditure. In contrast the low complexity design holds higher levels of risk that the solution will not be able to sufficiently meet project requirements. The preferred design option exists somewhere between the moderate and high complexity designs. Final decisions on the actual option will be dependent on additional information sourced from the client. Table 8 provides a non-exhaustive list of project aspects which need further clarification.
 \begin{table}[h]
 \centering
 \caption{Additional information that needs to be sought for effective selection of robot design}
@@ -519,15 +535,24 @@ The preferred design option is one which meets the project requirements an opera
 \toprule
 \textbf{Environment Questions} & \textbf{Other Questions}\\
 \midrule
+ & \\
 What materials is the environment constructed with? & Will the location of the exit zone always be in the same sport? Or will the location be random?\\
+ & \\
 Does the environment change, or will it be the same topology? & Will the location of the exit have any defining characteristics (e.g. located next to a wall) \\
+ & \\
 Is there access to a test environment? & Is the project restricted to using NI myRio hardware?\\
+ & \\
 Does the entrance to the environment always start at the same point, or is it randomised? & \\
+ & \\
 Will the walls and obstacles be assigned with parallel, and orthogonal surfaces? & \\
+ & \\
 Will the environment be based on a grid? Or will the environment be random? & \\
+ & \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\newpage
 
 %------------------------------------------------------
 \section{References}
@@ -544,7 +569,7 @@ Kumar, R., Jitoko, P., Kumar, S., Pillay, K., Prakash, P., Sagar, A.,...Mehta, U
 \begin{sidewaysfigure}[p]
 \centering
 \includegraphics[scale=0.38]{gantt}
-\caption{text}
+\caption{A gantt chart breaking down the phases of the project and detailing the labour assignment through the project life cycle.}
 \end{sidewaysfigure}
 
 \end{document}
