@@ -37,21 +37,12 @@
 \title{ENG405 (Integrated Design Project): Critical Analysis}
 \author{Tatyana Maltseva (\textbf{s257346}), Sakon Nadthayai (\textbf{s245002}),\\ and Shane Reynolds (\textbf{s262538})}
 
-\null  % Empty line
-\nointerlineskip  % No skip for prev line
-\vfill
-\let\snewpage \newpage
-\let\newpage \relax
 \maketitle
-\let \newpage \snewpage
-\vfill 
-\newpage
 
-
-\tableofcontents
+\footnotesize\tableofcontents
 
 \newpage
-
+\normalsize
 %-----------------------------------------------------
 \section{Introduction \& Scope}
 The purpose of this report is to provide a critical analysis of proposed designs discussed in the statement of work. Three main designs were proposed in the statement of work: low complexity, moderate complexity, and high complexity. In order to assess each of these schemes critically, general autonomous wheeled robot (AWR) subsystem design must be discussed. There are many subsystems to consider for AWR design, however, in the interests of brevity this report will restrict focus to six main subsystems which AWR's principally rely - these include:
@@ -111,8 +102,8 @@ Mobility configuration refers to the type of wheel used, and their geometrical a
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.3]{fig1}
-\caption{Detailed schematic of the Pololu Dagu Rover 5 chassis, set up with two motors and tracked wheels.}
+\includegraphics[scale=0.28]{fig1}
+\caption{Detailed schematic of the Pololu Dagu Rover 5 chassis, set up with two motors and tracked wheels. (Source: Rover 5 Datasheet)}
 \end{figure}
 
 The design which uses four Swedish 45 wheels, shown in Figure 5, provides a high level of manoeuvrability. The design facilitates movement in any trajectory in the plane, however, this comes with increased kinematic complexity, making it more difficult to control. Tracked wheel design provides excellent robustness when dealing with significant floor discontinuity found in unstructured terrain. The design is a special implementation of a differential drive referred to as skid steering. The configuration intentionally relies on wheel slippage in order to make turns. This is problematic when relying on navigation schemes that utilise odometry for navigation (Borenstein, Everett, and Feng, 1996). A third configuration, which would require some chassis modification, can be seen in Figure 6. The configuration employs two motors, however, the tracks are removed from the chassis. Further, a passive spherical wheel (see Figure 4) would be mounted to the opposite end of the chassis. This configuration is widely used in AWR design, meaning that governing kinematics are simple and well documented, allowing for less complex control schemes. The main drawback to this design is no ready way to attach the spherical wheel to the chassis - a mount would have to be designed to allow for this. Table 1 provides a summary of the advantages and disadvantages for each of the three considered designs, and overall design evaluation can be found in Section 11.
@@ -122,13 +113,13 @@ The design which uses four Swedish 45 wheels, shown in Figure 5, provides a high
 \begin{minipage}[t]{0.45\textwidth}
 \centering
 \includegraphics[scale=0.25]{omni_wheel}
-\caption{Swedish 45 wheel, which has passive rollers around the wheel circumference, allowing movement along many different trajectories.}
+\caption{Swedish 45 wheel, which has passive rollers around the wheel circumference, allowing movement along many different trajectories. (Source: \protect\url{http://www.core77.com})}
 \end{minipage}
 \hspace{1cm}
 \begin{minipage}[t]{0.45\textwidth}
 \centering
 \includegraphics[scale=0.3]{ball_bearing}
-\caption{Passive spherical wheel, providing omnidirectional movement.}
+\caption{Passive spherical wheel, providing omnidirectional movement. (Source: https://www.robotgear.com.au)}
 \end{minipage}
 \end{figure}
 \begin{figure}[h]
@@ -192,14 +183,14 @@ Incremental optical rotary encoders are devices which will measure the angular v
 \centering
 \begin{minipage}[t]{0.45\textwidth}
 \centering
-\includegraphics[height=4.5cm]{optical_enc}
-\caption{Black and white patterned disk on an optical encoder. White sections reflect IR light, and black absorb IR light.}
+\includegraphics[height=4.4cm]{optical_enc}
+\caption{Black and white patterned disk on an optical encoder. White sections reflect IR light, and black absorb IR light. (Source: Siegwart, \& Nourbakhsh, 2004)}
 \end{minipage}
 \hspace{1cm}
 \begin{minipage}[t]{0.45\textwidth}
 \centering
-\frame{\includegraphics[height=4cm]{optical_encoder_actual}}
-\caption{An incremental quadrature optical rotary encoder is provided on each of the two motors that come with the Rover 5 chassis.}
+\frame{\includegraphics[height=3.9cm]{optical_encoder_actual}}
+\caption{An incremental quadrature optical rotary encoder is provided on each of the two motors that come with the Rover 5 chassis. (Source: Rover 5 Datasheet)}
 \end{minipage}
 \end{figure}
 
@@ -226,7 +217,7 @@ Assuming we have some sampling period, $\Delta T$, and the pulse count is specif
 \begin{minipage}{0.45\textwidth}
 \centering
 \includegraphics[scale=0.4]{optical_encoder_signal}
-\caption{The two idealised signals generated by the IR sensor pair on a Quadrature Encoder. The two waves are 90$^o$ out of phase.}
+\caption{The two idealised signals generated by the IR sensor pair on a Quadrature Encoder. The two waves are 90$^o$ out of phase. (Source: Siegwart, \& Nourbakhsh, 2004)}
 \end{minipage}
 \hspace{1cm}
 \begin{minipage}{0.45\textwidth}
@@ -252,15 +243,17 @@ A simple example of how \textit{odometry} works can be seen by analysing straigh
 X_{I}[k] &= X_{I}[k-1] + (R \omega_k)\cdot \Delta T \cdot \sin \theta\\
 Y_{I}[k] &= Y_{I}[k-1] + (R \omega_k) \cdot \Delta T \cdot \cos \theta
 \end{align*}
-Table 3 provides a summary of the advantages and disadvantages of using an optical rotary encoder to calculate odometry.
+\vspace{0.5cm}
 \end{minipage}
 \hspace{1.25cm}
 \begin{minipage}{0.45\textwidth}
 \centering
 \includegraphics[scale=0.2]{odometry}
-\caption{The robot in the global coordinate frame denoted by the subscript $I$. The coordinate frame attached to the robot is denoted with a subscript $R$, and allows us to define the robot heading, $\theta$.}
+\caption{The robot in the global coordinate frame denoted by the subscript $I$. The coordinate frame attached to the robot is denoted with a subscript $R$, and allows us to define the robot heading, $\theta$. (Source: Siegwart, \& Nourbakhsh, 2004)}
 \end{minipage}
 \end{figure}
+
+Table 3 provides a summary of the advantages and disadvantages of using an optical rotary encoder to calculate odometry.
 
 \begin{table}[h]
 \centering
@@ -274,27 +267,27 @@ Table 3 provides a summary of the advantages and disadvantages of using an optic
 \end{tabular}
 \end{table}
 
-
+\newpage
 \subsubsection{Accelerometer \& Gyroscopes (IMU)}
 Accelerometers are used to measure external forces acting on the vehicle, which can be used to determine dynamic accelerations (Borenstein, Everett, \& Feng, 1996). It must be noted that the sensor cannot distinguish between static gravitational force, and dynamic forces - this means care is required when interpreting sensor results. The on-board accelerometer provided with the myRIO utilises a microelectromechanical system (MEMS). The device has two terminals, with finger like arrangement acting as tiny capacitance plates, as shown in Figure 11. One of the terminals has mass attached to it, and when the accelerometer is moved along the axis of interest, the plates move, which changes the capacitance. Measured change in capacitance provides an estimate of the acceleration. Note that there are actually three accelerometers in the myRIO device, each one mounted on a different mutually orthogonal axis.\\
 
-Gyroscopes are used to measure changes in the vehicle orientation. A MEMS gyroscopic sensor has a mass which oscillates at some velocity. When an angular velocity is applied to the sensor, the mass experiences a force due to the Coriolis effect. Similarly to the MEMS accelerometer, the MEMS gyroscope makes use of tiny capacitance plates. It is the change in capacitance that allows the estimation of the applied angular velocity. A single axis MEMS gyroscope can be seen in Figure 12. Typically, a MEMS gyroscopic sensor has three gyroscopes mounted on mutually orthogonal axes. 
+Gyroscopes are used to measure changes in the vehicle orientation. A MEMS gyroscopic sensor has a mass which oscillates at some velocity. When an angular velocity is applied to the sensor, the mass experiences a force due to the Coriolis effect. Similarly to the MEMS accelerometer, the MEMS gyroscope makes use of tiny capacitance plates. It is the change in capacitance that allows the estimation of the applied angular velocity (Dudek, \& Jenkins, 2008). A single axis MEMS gyroscope can be seen in Figure 12. Typically, a MEMS gyroscopic sensor has three gyroscopes mounted on mutually orthogonal axes. 
 \begin{figure}[h]
 \hspace{0.5cm}
 \begin{minipage}[t]{0.40\textwidth}
 \centering
 \frame{\includegraphics[height=5cm]{mems_accelerometer}}
-\caption{MEMS accelerometer. As the mass moves due to acceleration, the plates come closer together, or further apart, causing a measurable change in capacitance.}
+\caption{MEMS accelerometer. As the mass moves due to acceleration, the plates come closer together, or further apart, causing a measurable change in capacitance. (Source: \protect\url{https://www.sensorsmag.com})}
 \end{minipage}
 \hspace{3cm}
 \begin{minipage}[t]{0.3\textwidth}
 \centering
 \frame{\includegraphics[height=5cm]{mems_gyroscope}}
-\caption{MEMS gyroscope. the plates come closer together, or further apart, causing a measurable change in capacitance.}
+\caption{MEMS gyroscope. the plates come closer together, or further apart, causing a measurable change in capacitance. (Source: \protect\url{http://iopscience.iop.org})}
 \end{minipage}
 \end{figure}
 
-An accelerometer and gyroscope used in conjunction is often referred to as an Inertial Measurement Unit (IMU). An IMU can be employed to determine relative localisation of an AWR - the process can be seen in Figure 13. In this instance, the robot is constrained to movement in the $x$-$y$ plane, so we position the $z$-axis of the gyroscope orthogonal to this plane in order to detect rotational velocities about the $z$-axis. These rotational velocities are integrated and added to the initial heading to determine the robot's heading with respect to the Global frame. The $x$ and $y$ axes of the accelerometer are fixed on the robot and aligned with $X_R$ and $Y_R$, respectively (as shown in Figure 10). Detected accelerations in either the $x$ or $y$ axes can be integrated once to determine the relative velocity, or twice to determine the relative position. Combining these with the initial conditions allows the determination of the global velocity, and position. According to XXXX using accelerometers for inertial navigation is prone to error since the sensor measurements are integrated twice. Table 4 summarises the advantages and disadvantages of using accelerometers and gyroscopes for inertial navigation.
+An accelerometer and gyroscope used in conjunction is often referred to as an Inertial Measurement Unit (IMU). An IMU can be employed to determine relative localisation of an AWR - the process can be seen in Figure 13 (Dudek, \& Jenkins, 2008). In this instance, the robot is constrained to movement in the $x$-$y$ plane, so we position the $z$-axis of the gyroscope orthogonal to this plane in order to detect rotational velocities about the $z$-axis. These rotational velocities are integrated and added to the initial heading to determine the robot's heading with respect to the Global frame. The $x$ and $y$ axes of the accelerometer are fixed on the robot and aligned with $X_R$ and $Y_R$, respectively (as shown in Figure 10). Detected accelerations in either the $x$ or $y$ axes can be integrated once to determine the relative velocity, or twice to determine the relative position. Combining these with the initial conditions allows the determination of the global velocity, and position. According to Dudek \& Jenkins (2008) using accelerometers for inertial navigation is prone to error since the sensor measurements are integrated twice. Table 4 summarises the advantages and disadvantages of using accelerometers and gyroscopes for inertial navigation.
 
 \begin{figure}[h]
 \centering
@@ -347,7 +340,7 @@ scale=0.7, every node/.style={scale=0.7}
 \newpage
 
 \subsection{Exteroceptive Sensors}
-Exteroceptive sensors are those sensors which acquire information from the robot's environment. Examples of this type of information include distance measurements, light intensity, and sound amplitude. The two main applications of these sensors for AWRs are map generation, and absolute localisation. The remainder of this subsection will take a closer look at the advantages and disadvantages of three of these sensors: infrared distance, time of flight ultrasonic, and an RBGD camera.
+Exteroceptive sensors are those sensors which acquire information from the robot's environment (Leung, 2003). Examples of this type of information include distance measurements, light intensity, and sound amplitude. The two main applications of these sensors for AWRs are map generation, and absolute localisation. The remainder of this subsection will take a closer look at the advantages and disadvantages of three of these sensors: infrared distance, time of flight ultrasonic, and an RBGD camera.
 
 \subsubsection{Infrared Distance Sensor}
 The basic operating principle of the IR sensors is based on infrared light. By looking at where the light hits the detector, it is possible to calculate the angle of the light and from that angle, derive the distance to the object. Figures 14 and 15 illustrates the basic operating principle of the ranging technique.
@@ -356,7 +349,7 @@ The basic operating principle of the IR sensors is based on infrared light. By l
 \begin{minipage}[t]{0.45\textwidth}
 \centering
 \includegraphics[scale=0.25]{1d_IR_triang}
-\caption{The 1D IR ranging sensor sends IR light which reflects from the target surface, entering the IR sensor lens at some angle. Triangulation is used to determine the distance to the target.}
+\caption{The 1D IR ranging sensor sends IR light which reflects from the target surface, entering the IR sensor lens at some angle. Triangulation is used to determine the distance to the target. (Source: Siegwart \& Nourbakhsh, 2004)}
 \end{minipage}
 \hspace{1cm}
 \begin{minipage}[t]{0.45\textwidth}
@@ -370,7 +363,7 @@ Two different 1D IR ranging sensors were selected, based on their different rang
 \vspace{-2cm}
 \begin{figure}
 \centering
-\includegraphics[scale=0.1]{sharp_sensor}
+\includegraphics[scale=0.08]{sharp_sensor}
 \caption{A picture of the SHARP GP2YD120 sensor.}
 \end{figure}
 
@@ -379,12 +372,12 @@ Two different 1D IR ranging sensors were selected, based on their different rang
 \begin{minipage}[c]{0.45\textwidth}
 \centering
 \includegraphics[scale=0.4]{GP2Y_short}
-\caption{Voltage and ranged distance profile for the SHARP GP2YD120 sensor}
+\caption{Voltage and ranged distance profile for the SHARP GP2YD120 sensor. (Source: SHARP GP2YD120 Datasheet)}
 \end{minipage}
 \hspace{1cm}
 \begin{minipage}[c]{0.45\textwidth}
 \centering
-\captionof{table}{Values corresponding to the voltage and ranged distance profile for the SHARP GP2Y0A21YK0F sensor}
+\captionof{table}{Values corresponding to the voltage and ranged distance profile for the SHARP GP2YD120 sensor.}
 \begin{tabular}{cc}
 \toprule
 \textbf{Voltage Output ($\si{\volt}$)} & \textbf{Distance ($\si{\centi\meter}$)}\\
@@ -410,12 +403,12 @@ Two different 1D IR ranging sensors were selected, based on their different rang
 \begin{minipage}[c]{0.45\textwidth}
 \centering
 \includegraphics[scale=0.5]{GP2Y_long}
-\caption{Voltage and ranged distance profile for the SHARP GP2Y0A21YK0F sensor}
+\caption{Voltage and ranged distance profile for the SHARP GP2Y0A21YK0F sensor. (Source: SHARP GP2Y0A21YK0F Datasheet)}
 \end{minipage}
 \hspace{1cm}
 \begin{minipage}{0.45\textwidth}
 \centering
-\captionof{table}{Values corresponding to the voltage and ranged distance profile for the SHARP GP2Y0A21YK0F sensor}
+\captionof{table}{Values corresponding to the voltage and ranged distance profile for the SHARP GP2Y0A21YK0F sensor.}
 \begin{tabular}[c]{cc}
 \toprule
 \textbf{Voltage Output ($\si{\volt}$)} & \textbf{Distance ($\si{\centi\meter}$)}\\
@@ -508,7 +501,13 @@ An RGBD sensor captures a 2D pixel array on red, green, and blue channels using 
 \end{minipage}
 \end{figure}
 
-The Kinect depth sensor, and optical sensor, operate at a resolution of 640 $\times$ 480 pixels. Combining the optical RGB and IR depth information, allows the development of a point cloud consisting of approximately 300000 points (Kamarudin, Mamduh, Shakaff, \& Zakaria, 2014). Typically, some of the points are removed to reduce the amount required computational resources needed to process a point cloud. This is done using a process called Voxel downsamping (Reynolds, 2018). An example of a downsampled point cloud, generated from Kinect sensor data, can be seen in Figure 21. Point cloud representations of environments are desirable as they allow for the a number of sophisticated solutions to difficult problems associated with designing an AWR.
+The Kinect depth sensor, and optical sensor, operate at a resolution of 640 $\times$ 480 pixels. Combining the optical RGB and IR depth information, allows the development of a point cloud consisting of approximately 300000 points (Kamarudin, Mamduh, Shakaff, \& Zakaria, 2014). Typically, some of the points are removed to reduce the amount required computational resources needed to process a point cloud. This is done using a process called Voxel downsamping. An example of a downsampled point cloud, generated from Kinect sensor data, can be seen in Figure 21. Point cloud representations of environments are desirable as they allow for the a number of sophisticated solutions to difficult problems associated with designing an AWR:
+\begin{itemize}
+\item The most notable of these solutions is SLAM, discussed in Section 6, which provides a way to correct odometry errors.
+\item The other notable advantage of the Kinect is using the optical camera with a colour segmentation filter to detect the exit panel - this is discussed further in Section 9.3.2.  
+\end{itemize}
+
+Table 9 provides a summary of the advantages and disadvantages of using an RGBD camera, or not. 
 
 \begin{table}[h]
 \centering
@@ -663,7 +662,7 @@ This problem is often referred to as the Inverse Kinematic problem. Indeed, for 
 
 %-------------------------------------------------------------
 \section{Map Building}
-Complicated tasks such as exploration and object avoidance can be undertaken without an internal representation of the robot's environment, however, some tasks such as absolute localisation or path planning become increasingly difficult to solve. According to XXXX the most natural representation of a robot's environment is a map. This section of the critical analysis compares the advantages and disadvantages of using a mapping scheme, or not mapping scheme.
+Complicated tasks such as exploration and object avoidance can be undertaken without an internal representation of the robot's environment, however, some tasks such as absolute localisation or path planning become increasingly difficult to solve. According to Elfes (1989) the most natural representation of a robot's environment is a map. This section of the critical analysis compares the advantages and disadvantages of using a mapping scheme, or not mapping scheme.
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.3]{occupancy_grid}
@@ -705,7 +704,7 @@ Gutmann \& Fox (1998) define localisation as the task of estimating position and
 \item \textbf{Absolute localisation:} obtaining the absolute position using environmental landmarks, or beacons
 \end{itemize}
 
-Why is absolute localisation important? As previously noted, techniques which calculate relative localisation, such as odometry, are imperfect - they are prone to the accumulation of error. This is due to approximations used in dynamic equations governing robot motion, and errors from the sensor readings that odometry depends on. This can lead to the robot's internal position belief to diverge from its actual position over time. Odometry is particularly sensitive to errors in orientation - even small orientation errors can lead to large errors in position belief, as shown in Figure 28. Furthermore, this can corrupt the robot's mapping system which path planning and navigation more difficult. An example of this can be seen in Figure 29. The left panel shows the exact environment map, indicated with thick dark lines. The desired robot trajectory is shown by the light grey line. 
+Why is absolute localisation important? As previously noted, techniques which calculate relative localisation, such as odometry, are imperfect - they are prone to the accumulation of error. This is due to approximations used in dynamic equations governing robot motion, and errors from the sensor readings that odometry depends on. This can lead to the robot's internal position belief to diverge from its actual position over time. Odometry is particularly sensitive to errors in orientation - even small orientation errors can lead to large errors in position belief, as shown in Figure 28. Furthermore, this can corrupt the robot's mapping system which path planning and navigation more difficult. An example of this can be seen in Figures 29 and 30. The left panel shows the exact environment map, indicated with thick dark lines. The desired robot trajectory is shown by the light grey line. 
 \end{minipage}
 \hspace{1cm}
 \begin{minipage}{0.45\textwidth}
@@ -721,21 +720,22 @@ of the environment, which has been corrupted by odometry error. It must be noted
 
 \begin{figure}[h]
 \centering
-\begin{minipage}{0.3\textwidth}
+\begin{minipage}{0.45\textwidth}
 \centering
-\includegraphics[height=4cm]{exact}
+\includegraphics[height=5cm]{exact}
 \end{minipage}
-\hspace{0.5cm}
-\begin{minipage}{0.3\textwidth}
+\hspace{1cm}
+\begin{minipage}{0.45\textwidth}
 \centering
-\includegraphics[height=4cm]{exact_odom}
+\includegraphics[height=5cm]{exact_odom}
 \end{minipage}
-\hspace{0.5cm}
-\begin{minipage}{0.3\textwidth}
+\caption{The image on the left shows the exact model of the robot environment (dark line), and the desired trajectory around the environment (light line). The middle image shows the exact robot environment, and the trajectory which has been corrupted by odometry error. Image taken from Okamoto \& Guizilini (2010).}
+\end{figure}
+
+\begin{figure}[h]
 \centering
-\includegraphics[height=4cm]{odom_error_map}
-\end{minipage}
-\caption{The image on the left shows the exact model of the robot environment (dark line), and the desired trajectory around the environment (light line). The middle image shows the exact robot environment, and the trajectory which has been corrupted by odometry error. The image on the right shows the robot's internalised map of the environment, which has been corrupted by odometry error. Images taken from Okamoto \& Guizilini (2010).}
+\includegraphics[height=5cm]{odom_error_map}
+\caption{Shows the robot's internalised map of the environment, which has been corrupted by odometry error. Image taken from Okamoto \& Guizilini (2010).}
 \end{figure}
 
 \begin{table}
@@ -745,9 +745,9 @@ of the environment, which has been corrupted by odometry error. It must be noted
 \toprule
  & \textbf{No Localisation} & & \textbf{Simultaneous Localisation \& Mapping (SLAM)}\\
 \midrule
-\multirow{2}{*}[-0.75cm]{\rotatebox[origin=c]{90}{\textbf{Advantages}}} & \begin{itemize}[leftmargin=0.3cm] \item \item \item \end{itemize} & & \begin{itemize}[leftmargin=0.3cm] \item \end{itemize} \\
+\multirow{2}{*}[-0.25cm]{\rotatebox[origin=c]{90}{\textbf{Advantages}}} & \begin{itemize}[leftmargin=0.3cm] \item Easy to implement \item Does not require computational resources \end{itemize} & & \begin{itemize}[leftmargin=0.3cm] \item Provides the robot with the ability to create a map and localise itself within the map, correcting accumulated odometry errors \item Allows precise navigation and map building \end{itemize} \\
 \midrule
-\multirow{2}{*}[-0.75cm]{\rotatebox[origin=c]{90}{\textbf{Disadvantages}}} & \begin{itemize}[leftmargin=0.3cm] \item \item \item \end{itemize} & & \begin{itemize}[leftmargin=0.3cm] \item \end{itemize} \\
+\multirow{2}{*}[-0.25cm]{\rotatebox[origin=c]{90}{\textbf{Disadvantages}}} & \begin{itemize}[leftmargin=0.3cm] \item Robot accumulates error from using odometric methods of navigation - error may cause incorrect navigation and corrupted mapping  \end{itemize} & & \begin{itemize}[leftmargin=0.3cm] \item Technically challenging to understand \item Technically challenging to implement \item High cost to implement \item Significant use of computational resources \end{itemize} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -783,7 +783,7 @@ A stochastic exploration strategy, sometimes called reactive navigation, impleme
 \end{minipage}
 \end{figure}
 
-A stochastic exploration strategy is desirable because it is simple to implement and only requires minimal computational resources to complete the task. The main disadvantages lie in the fact that the robot may traverse an area of the environment multiple times before it explores all of the environment. Moreover, environmental topologies exist in which the robot could get stuck, referred to as \textit{local minima} in the literature (XXXX, XXXX). Figure 30 demonstrates the basic exploration strategy described above, and shows an environmental topology in which the robot becomes trapped in a \textit{local minima}. Yamauchi cites the central question to developing a good exploration strategy as:
+A stochastic exploration strategy is desirable because it is simple to implement and only requires minimal computational resources to complete the task. The main disadvantages lie in the fact that the robot may traverse an area of the environment multiple times before it explores all of the environment. Moreover, environmental topologies exist in which the robot could get stuck, referred to as \textit{local minima} in the literature (Siegwart \& Nourbakhsh, 2004). Figure 31 demonstrates the basic exploration strategy described above, and shows an environmental topology in which the robot becomes trapped in a \textit{local minima}. Yamauchi cites the central question to developing a good exploration strategy as:
 
 \vspace{0.5cm}
 
@@ -793,7 +793,7 @@ A stochastic exploration strategy is desirable because it is simple to implement
 
 Yamauchi goes on to posit that an exploration strategy for gaining the most new information is to move the AWR to a boundary between obstacle free open space and uncharted territory. This strategy is referred to as frontier based navigation. The strategy relies on the use of an occupancy grid with additional representation for unexplored cells. At the start of robot navigation each cell is populated with a value, such as -1, indicating that the cell is unknown. When a cell has been explored, using Borenstein and Koren's \textit{Vector Field Histogram} scheme outlined in Section 5, the cell is populated with a value ranging from 0 to 15. If a cell is below a certain threshold value (say 2) then it is considered free space.\\
 
-The exploration strategy employs a process analogous to edge detection to find the boundaries between open space and unknown space - any obstacle free cell adjacent to an uncharted cell is labelled as a frontier edge. Frontier edge cells are grouped into frontier regions, and if the frontier region is big enough the centroid of this region is marked as a location that the robot will explore. An example of this process can be seen in Figure 31, which was taken from Yamauchi's 1997 paper \textit{A Frontier-Based Approach for Autonomous Exploration}. The main advantages of this exploration strategy is that it guarantees full environment exploration, given that all areas of the environment are accessible. The principal drawbacks are that the software implementation is not straight forward, and requires more computational resources meaning that a more expensive microprocessor (like the myRIO) is required. Table 13 provides a summary on the advantages and disadvantages of stochastic exploration and frontier based exploration.
+The exploration strategy employs a process analogous to edge detection to find the boundaries between open space and unknown space - any obstacle free cell adjacent to an uncharted cell is labelled as a frontier edge. Frontier edge cells are grouped into frontier regions, and if the frontier region is big enough the centroid of this region is marked as a location that the robot will explore. An example of this process can be seen in Figure 32, which was taken from Yamauchi's 1997 paper \textit{A Frontier-Based Approach for Autonomous Exploration}. The main advantages of this exploration strategy is that it guarantees full environment exploration, given that all areas of the environment are accessible. The principal drawbacks are that the software implementation is not straight forward, and requires more computational resources meaning that a more expensive microprocessor (like the myRIO) is required. Table 13 provides a summary on the advantages and disadvantages of stochastic exploration and frontier based exploration.
 
 \begin{figure}[h]
 \centering
@@ -868,7 +868,7 @@ Chassis  & \textit{Rover 5} & Mobility Configuration & \textit{Differential Driv
 & & &\\
 Proprioceptive Sensors & \textit{Optical rotary encoders} & Locomotion Control & \textit{PID}\\
 & & &\\
-Exteroceptive Sensors & \textit{SHARP GP2Y0A21YKOF} & Mapping & \textit{None}\\
+Exteroceptive Sensors & \textit{IR Ranging} & Mapping & \textit{None}\\
 & & & \\
 Computational Hardware & \textit{Arduino} & Localisation & \textit{None}\\
 & & & \\
@@ -881,7 +881,7 @@ Computational Hardware & \textit{Arduino} & Localisation & \textit{None}\\
 \subsubsection{Operation \& Software Description}
 \begin{figure}[h]
 \begin{minipage}{0.45\textwidth}
-This design is low complexity, easy to be constructed and required the lowest cost compared to other 2 options. It is operated by using a finite state machine and four sensors;  one IR sensor on the front used for checking an obstacle-free path forward, two on the left and right side of the robot to assure the robot will not collide with walls and a final sensor will be employed on rear of the robot chassis used to detect if the robot is currently placed on the red exit panel. There are two types of IR sensor used for the design option 1 which are SHARP GP2D120 for the side of the robot and SHARP GP2Y0A21YKOF for the front of the robot. Operation diagram of the design option 1 is shown as below. Initially, the robot is placed at the starting point as the stop state. The sensors will check through the robot path if there are no obstacles present in the robot path the robot will moves forward using a constant velocity controlled by PID control. If the sensors detect that the path was blocked the robot will change state to the turn state. 
+This design is low complexity, easy to be constructed and required the lowest cost compared to other 2 options. It is operated by using a finite state machine and four sensors;  one IR sensor on the front used for checking an obstacle-free path forward, two on the left and right side of the robot to assure the robot will not collide with walls and a final sensor will be employed on rear of the robot chassis used to detect if the robot is currently placed on the red exit panel. There are two types of IR sensor used for the design option 1 which are SHARP GP2D120 for the side of the robot and SHARP GP2Y0A21YKOF for the front of the robot. Operation of the design option 1 is shown in Figure 33. Initially, the robot is placed at the starting point as the stop state. The sensors will check through the robot path if there are no obstacles present in the robot path the robot will moves forward using a constant velocity controlled by PID control. If the sensors detect that the path was blocked the robot will change state to the turn state. 
 \end{minipage}
 \hspace{1cm}
 \begin{minipage}{0.45\textwidth}
@@ -930,7 +930,7 @@ Chassis  & \textit{Rover 5} & Mobility Configuration & \textit{Differential Driv
 & & &\\
 Proprioceptive Sensors & \textit{Optical rotary encoders} & Locomotion Control & \textit{PID}\\
 & & &\\
-Exteroceptive Sensors & & Mapping & \textit{Vector Field Histogram}\\
+Exteroceptive Sensors & \textit{IR \& Ultrasonic} & Mapping & \textit{Vector Field Histogram}\\
 & & & \\
 Computational Hardware & \textit{myRio} & Localisation & \textit{None} \\
 & & & \\
@@ -941,7 +941,7 @@ Computational Hardware & \textit{myRio} & Localisation & \textit{None} \\
 \end{table}
 
 \subsubsection{Operation \& Software Description}
-Given the nature of the environment where the robot motion is limited to the predetermined terrain boundaries, the localization and mapping can be represented by a grid of uniform cells and the movement of the robotic vehicle is bounded to the valid steps from one cell to another. This way the navigation map can be reduced to the logic matrix with coordinate system. Using the inputs from mapping and the localization, the vehicle path planning algorithm allows robotic vehicle to follow a suitable path to reach the final destination. In line with the project purpose, the logical navigation rules for this design option are to go straight towards the final destination and, in case of obstacles obstructing the way, avoid it. The block diagram of the obstacle detection and path planning is shown below in Figure 33.\\
+Given the nature of the environment where the robot motion is limited to the predetermined terrain boundaries, the localization and mapping can be represented by a grid of uniform cells and the movement of the robotic vehicle is bounded to the valid steps from one cell to another. This way the navigation map can be reduced to the logic matrix with coordinate system. Using the inputs from mapping and the localization, the vehicle path planning algorithm allows robotic vehicle to follow a suitable path to reach the final destination. In line with the project purpose, the logical navigation rules for this design option are to go straight towards the final destination and, in case of obstacles obstructing the way, avoid it. The block diagram of the obstacle detection and path planning is shown below in Figure 34.\\
 
 \begin{figure}[h]
 \centering
@@ -973,7 +973,7 @@ As the robot travels through the environment (grid), it records measurements fro
 
 \begin{figure}
 \begin{minipage}{0.45\textwidth}
-The logic diagram of grid exploration can be seen in Figure 34. Firstly the robot checks the surrounding spaces for clearance and moves forward to the next spot, if the robot has finished mapping the maze, it stops its motors. If the robot has not finished mapping the maze, then it will check to see whether there are obstacles in front, to the left, and to the right, which is called a dead end. If the robot identifies itself at a dead end it moves backwards until there is a new spot to check. For instance, if the robot identifies free movement forward and left, the map stores ‘3’, the value for forwards, in position 5 of the array.\\
+The logic diagram of grid exploration can be seen in Figure 35. Firstly the robot checks the surrounding spaces for clearance and moves forward to the next spot, if the robot has finished mapping the maze, it stops its motors. If the robot has not finished mapping the maze, then it will check to see whether there are obstacles in front, to the left, and to the right, which is called a dead end. If the robot identifies itself at a dead end it moves backwards until there is a new spot to check. For instance, if the robot identifies free movement forward and left, the map stores ‘3’, the value for forwards, in position 5 of the array.\\
 
 As the robot continues its travelling through the maze it maps every path in the maze. If the robot identifies itself in a position that was already visited it reorients itself to the next available path from the previous spot. The travelling through the maze continues until the robot reaches its final destination identified by the red square on the terrain. The final destination is detected by the sensor located on the bottom of the robot.
 \vspace{0.5cm}
@@ -1001,11 +1001,11 @@ Chassis  & \textit{Rover 5} & Mobility Configuration & \textit{Differential Driv
 & & &\\
 Proprioceptive Sensors & \textit{Optical rotary encoders} & Locomotion Control & \textit{PID}\\
 & & &\\
-Exteroceptive Sensors & & Mapping &\\
+Exteroceptive Sensors & \textit{IR, Ultrasonic, \& RGBD} & Mapping & \textit{Vector-Field Histogram}\\
 & & & \\
-Computational Hardware & \textit{myRio} & Localisation & \\
+Computational Hardware & \textit{myRio} & Localisation & \textit{SLAM}\\
 & & & \\
- & & Exploration Strategy &\\
+ & & Exploration Strategy & \textit{Frontier-Based}\\
 & & & \\
 \bottomrule
 \end{tabular}
@@ -1102,8 +1102,10 @@ Every design option has its advantages and disadvantages; hence it’s important
 \item \textbf{Complexity (15\% weighting):} complex design puts at risk the execution of the task due to limited timeframe.
 \item \textbf{Cost (10\% weighting):} it’s always least desirable to spend extra budget on the design. For the client the least spending is the best, but the trade-off is the quality. In this design task, the budget is not a main constraint, hence is not as important as the technical factors and functional compliance.
 \end{itemize}
+\newpage
 \subsection{Evaluation of Design Option Invariant Elements}
 This section of the report provides an evaluation of those elements of the design which do not vary with each of the design options. Notably, these are the Mobility Configuration, the choice of Proprioceptive Sensors, and the Low Level Control Scheme. The evaluation is undertaken in the table below, with the most desirable design elements highlighted in green. A final design recommendation is provided in Section 11.3.
+\vspace{1cm}
 \begin{table}[h]
 \centering
 \footnotesize
@@ -1153,9 +1155,10 @@ Closed Loop Control (PID) \newline & N/A & 70 & 50 & 60 & N/A & 39.00 \\
 \hline
 \end{tabular}
 \end{table}
-
+\newpage
 \subsection{Evaluation of Design Option Variant Elements}
-This section of the report provides an evaluation of those elements of the design which vary with each of the design options. Notably, these are the Computational Hardware, Exteroceptive Sensors, Mapping Strategy, Localisation Strategy, and Exploration Strategy. The evaluation is undertaken in two parts. The first table determines a score for each of the design elements, for each of the three design options. The set of scores for each of design options are totalled in the second table, and the most desirable design option is highlighted in green. Note that these tables can be found on page 28. 
+This section of the report provides an evaluation of those elements of the design which vary with each of the design options. Notably, these are the Computational Hardware, Exteroceptive Sensors, Mapping Strategy, Localisation Strategy, and Exploration Strategy. The evaluation is undertaken in two parts. The first table determines a score for each of the design elements, for each of the three design options. The set of scores for each of design options are totalled in the final evaluation seen in subsection 11.3 - the most desirable design option is highlighted in green.
+\vspace{1cm}
 \begin{table}[h]
 \centering
 \footnotesize
@@ -1239,6 +1242,9 @@ Design Option 3 (\textit{Frontier-Based}) & 90 & 80 & 20 & 20 & 20 & 52.50\\
 \end{tabular}
 \end{table}
 
+\subsection{Final Recommendation} \normalsize
+Summarising the findings from Sections 11.1 and 11.2 the final design should utilise two wheels, with one passive omnidirectional spherical wheel for it's mobility configuration. Optical encoders should be used to calculate the \textit{odometry} of the robot, and closed loop control (preferably PID) should be employed for the low level control of the motors. Design Option 2 (Moderate Complexity) is the most desirable design option. This would see final design employ the myRIO as the computational hardware. Further, the design would employ 4 $\times$ IR ranging sensors: 1 $\times$ SHARP GP2D120 at the front of the robot, and 2 $\times$ SHARP GP2Y0A21YKOF at either side of the robot, and 1 $\times$ SHARP GP2Y0A21YKOF mounted underneath the robot to detect the red exit panel. An ultrasonic sensor would also be employed at the front of the robot. The sensor most likely to be utilised is the Matbotix MB1230 ultrasonic sensor. Both IR and ultrasonic sensors would be used in fusion arrangement to provide information to the robot's mapping system which is based on a modified \textit{occupancy grid} called a \textit{Vector-Field Histogram}. The robot would not employ an absolute localisation strategy, however, would use a \textit{Frontier-Based} exploration strategy to identify areas of interest on the map.
+\vspace{1cm}
 \begin{table}[h]
 \centering
 \footnotesize
@@ -1268,25 +1274,70 @@ Design Option 3 & 23.00 & 13.50 & 66.00 & 33.00 & 52.50 & 188.00 \\
 \end{tabular}
 \end{table}
 
-\subsection{Final Recommendation}
-Summarising the findings from Sections 11.1 and 11.2 the final design should utilise two wheels, with one passive omnidirectional spherical wheel for it's mobility configuration. Optical encoders should be used to calculate the \textit{odometry} of the robot, and closed loop control (preferably PID) should be employed for the low level control of the motors. Design Option 2 (Moderate Complexity) is the most desirable design option. This would see final design employ the myRIO as the computational hardware. Further, the design would employ 4 $\times$ IR ranging sensors: 1 $\times$ SHARP GP2D120 at the front of the robot, and 2 $\times$ SHARP GP2Y0A21YKOF at either side of the robot, and 1 $\times$ SHARP GP2Y0A21YKOF mounted underneath the robot to detect the red exit panel. An ultrasonic sensor would also be employed at the front of the robot. The sensor most likely to be utilised is the Matbotix MB1230 ultrasonic sensor. Both IR and ultrasonic sensors would be used in fusion arrangement to provide information to the robot's mapping system which is based on a modified \textit{occupancy grid} called a \textit{Vector-Field Histogram}. The robot would not employ an absolute localisation strategy, however, would use a \textit{Frontier-Based} exploration strategy to identify areas of interest on the map.
 \clearpage
 
 \section{References}
-Barshan, B., Durrant-Whyte, H. (1993). An Inertial Navigation System for a Mobile Robot. \textit{IEEE Conference on Intelligent Robots and Systems}, Yokohama, Japan, July 26-30, 1993\\
+\normalsize
+Barshan, B., \& Durrant-Whyte, H. (1993). An Inertial Navigation System for a Mobile Robot. \textit{IEEE Conference on Intelligent Robots and Systems}, Yokohama, Japan, July 26-30, 1993.\\
 
-Borenstein, J., Everett, H., \& Feng, L. (1996). Where am i? \textit{University of Michigan for ORNL D\&D program}.
+\normalsize
+Borenstein, J., Everett, H., \& Feng, L. (1996). Where am I? \textit{University of Michigan for ORNL D\&D program}.\\
 
-Borenstein, J. \& Koren, Y. (1991). Histogramic Mapping for Mobile Robot Obstacle Avoidance. \textit{IEEE Transactions on Robotics and Automation}, 7 (4) pp 535-539\\
+\normalsize
+Borenstein, J., \& Koren, Y. (1991). Histogramic Mapping for Mobile Robot Obstacle Avoidance. \textit{IEEE Transactions on Robotics and Automation}, 7 (4) pp 535-539.\\
 
-Dudek, G., Jenkin, M. (2010). Computational Principals of Mobile Robotics. \textit{Cambridge University Press}\\
+\normalsize
+Dudek, G., \& Jenkin, M. (2010). Computational Principals of Mobile Robotics. \textit{Cambridge University Press} [Kindle version]. Retrieved from \url{http://www.amazon.com}.\\
 
-Durrant-Whyte, H., Bailey, T. (2006). Simultaneous Localization and Mapping: Part 1. \textit{IEEE Robotics \& Automation Magazine}, pp 99-108\\
+Dudek, G., \& Jenkin, M. (2008). Inertial Sensors, GPS, and Odometry. \textit{Springer Handbook of Robotics}.\\DOI: 10.1007/978-3-540-30301-5\_21\\
 
-Kapoor, S., Mahesh, K., Ruzinov, D., Battipaglia, J. (2017). Autonomously Solving Mazes with Robots. Retrieved from \small\url{http://soe.rutgers.edu/sites/default/files/imce/gov2017/Autonomously%20Solving%20Mazes%20with%20Robots.pdf}\\
+\normalsize
+Durrant-Whyte, H., \& Bailey, T. (2006). Simultaneous Localization and Mapping: Part 1. \textit{IEEE Robotics \& Automation Magazine}, pp 99-108.\\
 
-Siegwart, R., Nourbakhsh, I. (2004). Autonomous Mobile Robots. \textit{The MIT Press Cambridge, Massachusetts}.\\
+\normalsize
+Elfes, A. (1989). Using Occupancy Grids for Mobile Robot Perception and Navigation. {IEEE}. Retrieved from \url{https://ieeexplore.ieee.org}\\
 
+\normalsize
+Everett, H. (1995). Sensors for Mobile Robots. \textit{AK Peters Ltd}, Massachusetts.\\
+
+\normalsize
+Ganganath, N. \& Leung, (2012). Mobile Robot Localisation using Odometry and Kinect Sensor. \textit{2012 IEEE International Conference on Emerging Signal Processing Applications}. DOI: 10.1109/ESPA.2012.6152453\\
+
+\normalsize
+Goel, P., Roumeliotis, S., \& Sukhatme, G. (1998). Robot Localisation Using Relative and Absolute Position Estimates. \textit{Department of Computer Science, Institute for Robotics and Intelligent Systems}.\\ 
+
+\normalsize
+Gutmann, J., \& Fox, D. (1998). An Experimental Comparison of Localisation Methods Continued. \textit{Department of Computer Science \& Engineering, University of Washington}.\\
+
+\normalsize
+Ippoliti, G., Jetto, L., \& Longhi, S. (2005). Localisation of mobile robots: Development and comparative evaluation of algorithms based on odometric and inertial sensors. \textit{Journal of Field Robotics}, 22 (12). \url{https://doi.org/10.1002/rob.20095}\\
+
+\normalsize
+Kamarudin, K., Mamduh, S., Shakaff, A., \& Zakaria, A. (2014). Performance Analysis of the Microsoft Kinect Sensor for 2D Simultaneous Localisation and Mapping (SLAM) Techniques. \textit{Open Access Sensors}.\\
+
+\normalsize
+Kapoor, S., Mahesh, K., Ruzinov, D., \& Battipaglia, J. (2017). Autonomously Solving Mazes with Robots. Retrieved from \small\url{http://soe.rutgers.edu/sites/default/files/imce/gov2017/AutonomouslySolvingMazeswithRobots.pdf}.\\
+
+\normalsize
+Leung, J. (2003). Studies on Map Building and Exploration Strategies for Autonomous Mobile Robots. (Doctoral dissertation). \textit{Hong Kong Polytechnic University}.\\
+
+\normalsize
+Ogata, K. (2010). Modern Control Engineering Fifth Edition. \textit{Pearson Education Inc}.\\ 
+
+\normalsize
+Okamoto, J., \& Guizilini, V. (2010). On-line SLAM using clustered landmarks with omnidirectional vision. \textit{Journal of Brazilian Society of Mechanical Sciences and Engineering}, Vol 32.\\
+
+\normalsize
+Reynolds, S. (2018). 3D Perception Report. \url{https://github.com/skreynolds/RoboND_reports/blob/master/03_perception_3d/03_perception_3d.pdf}\\
+
+\normalsize
+Rover 5 Datasheet. (2018). Retrieved from \url{https://www.sparkfun.com/datasheets}.\\
+
+\normalsize
+Siegwart, \& R., Nourbakhsh, I. (2004). Autonomous Mobile Robots. \textit{The MIT Press Cambridge, Massachusetts}.\\
+
+\normalsize
+Yamauchi, B. (1997). A Frontier-Based Approach for Autonomous Exploration. \textit{Navy Center for Applied Research in Artificial Intelligence}.\\
 
 \begin{sidewaysfigure}[p]
 \centering
