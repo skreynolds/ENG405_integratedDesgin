@@ -1,6 +1,6 @@
 <img src="https://fundraising.blackbaud.com.au/wp-content/uploads/2016/08/CDU-LOGO-RGB-LHS-1200x628.jpg" alt="Charles Darwin University - ENG720 Honours Thesis" width="200" />
 
-# ENG720 Integrated Design
+# ENG405 Integrated Design
 
 Integrated Design is an engineering capstone project which brings together much of the previous learning in the engineering course. The main features of Integrated Design are:
 
