@@ -5,11 +5,8 @@
 Integrated Design is an engineering capstone project which brings together much of the previous learning in the engineering course. The main features of Integrated Design are:
 
 * An integrated group design project, covering several aspects of engineering
-
 * Detailed application of knowledge from previous units in the engineering course - the project ensures parts of as many previous units as possible are incorporated
-
 * Full application of life cycle analysis and the principle of Concept, Design, Implement, Operate (CDIO)
-
 * Taking a design brief to a functional (to client's expectations) outcome
 
 ## Unit Learning Outcomes
